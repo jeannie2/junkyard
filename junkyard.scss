@@ -1,0 +1,199 @@
+/* based on: https://codepen.io/tutsplus/pen/MrjYJK and https://codepen.io/natewiley/pen/Ciwyn */
+
+//QQ same random for all properties eg when refresh, diff. starting point of dots always same. how recompile sass when refresh browser?
+/*: note: 
+The random # only changes when you recompile your sass code and not who you reload the compiled css code in your browser:
+https://books.google.com.hk/books?id=YtvJDAAAQBAJ&pg=PA126&lpg=PA126&dq=reload+random+sass+not+working&source=bl&ots=vFsmhNkJKy&sig=ACfU3U0cbmdCa02fs5kmxl-UynSy3uA2dw&hl=en&sa=X&ved=2ahUKEwiQh-vo0pHpAhWRSJQKHcclB2gQ6AEwAXoECAoQAQ#v=onepage&q=reload%20random%20sass%20not%20working&f=false */
+
+//QQ particles no resize with image. seems particles relative to vh, but image is not. ideally, particles should be respective to image, or the container (not sure why cant, though tried relative and percentages). guess appendchild working.
+//QQ portfolio site (when open junkyard): how set min width for new window? media queries no point. works better on new tab vs new window
+//QQ responsive?
+//QQ how make each particle rise by respective randomy? animation not restarting at right times, maybe takes too long to restart bubbling
+
+//QQ interactive 
+//QQ sway random x values?
+//QQ no debugging scss
+//QQ right side border 
+//QQ not all dots reach starting point at that time
+//QQ why few milimeters (3mm) off for vw eg 50vw
+//QQ dont get *vh/vw 
+//extending beyond? 
+//change opacity as move up
+//linear
+//for each i: how come works for green dot created? 
+//guess no floor whenever use sass random
+//poss solution: add remove css classes using js (css compiled at loadtime). set interval js solutions no work bc dots always moving */ 
+
+body {
+  background:black;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+#junkyard {
+  position:absolute;
+  width:auto; 
+  max-width:800px;
+  height:auto;
+  top:10%;
+  right:-10vw;//-10%;
+  bottom:0%;  
+  //:2px solid blue;
+  z-index:-100;
+}
+
+#particle-container { /* make relative to image size width, not viewpoert height */
+  position:absolute;
+  //width:100%;
+  //height:100%;
+  width:100vw;
+  height:100vh;
+  top:0;
+  float:left;
+  //border: 1px solid orange;
+  //z-index:100;
+}
+
+.particle {
+  z-index:1000 !important;
+  position:absolute !important; /* relative; */
+  border-radius: 50%;
+  /*or could set width, height in pixels rather than size later */
+    
+  /*
+  &:hover {
+    animation: 
+   //transform:translateX(500px) !important;
+    background:red !important;
+  } */
+    
+}
+  
+/* didnt put (min-width: 320px) before */
+@media only screen and (max-width: 576px) {
+  #junkyard {
+    right:-70vw//-30vw;///-65%;
+  }
+
+  /*#particle-container {
+    right:50%;
+  }*/
+
+}
+
+@media only screen and (min-width: 576px) and (max-width: 992px) {
+  #junkyard {
+    right:-40vw;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px){
+  #junkyard {
+    right:-20vw;
+  }
+}
+
+@for $i from 1 through 19 {   /* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(#{$i}) {
+//&:nth-child(5n + #{$i}) { */
+  $minX:75;
+  $maxX:80; 
+  $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;  /* change to 70 + (random) */
+  $randomY: random(80) * 1vh; 
+  $randomZ: random(100) * 1px; /* px for Z only */
+
+  @keyframes hotdog-#{$i} {
+    100% { transform: 
+     translate($randomX, -50px); //translate3d seem shaky.
+     /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+    @debug "randomY" $randomY ". randomY" $randomY; 
+    } 
+  }  
+   
+  .particle:nth-child(#{$i}){
+    $size: random(3) + px; 
+    height: $size; 
+    width: $size;  
+
+    // why no work? try with image: transform: translate(30%, 80%); 
+    //transform:translate3d(50%, -100%, 50%);
+    transform: translate3d($randomX, $randomY, $randomZ);
+    @debug "particle: randomX:" $randomX "randomY" $randomY "randomZ" $randomZ;
+    opacity: random(10)/10;/* no start from 0. how make it QQ */
+    background: white; /* hsl(random(360), 70%, 50%) */
+    
+    $min: 30; 
+    $max: 85; 
+    $time: ($min + (random() * (($max - $min) + 1)))  + s; /* time: speed. */
+    animation: hotdog-#{$i} $time linear infinite; /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+    $delay: random(10)/10; /* 0.1 to 1.0 */
+    @debug "delay:" $delay;
+    animation-delay: -$i * $delay + s; /* time when dot start moving */
+    //QQ multiply i. better when do */
+  }
+    
+  #pie-one {
+    $minSize: 5; 
+    $maxSize: 6; 
+    $size: ($minSize + (random() * (($maxSize - $minSize) + 1)))  + px; /* account for decimals? */
+    height: $size;
+    width: $size;
+
+    transform: translate(77.1vw, 42vh); /* override .particle */ 
+    opacity:0.9;
+    background: white !important;
+    /*border:1px solid rgba(102,105,105,0.8); #999;  */
+    box-shadow:0 0 10px 3px silver; //#888;
+    /*border:transparent; */
+
+    $minTime: 50;
+    $maxTime: 110; 
+    $time: ($minTime + (random() * (($maxTime - $minTime) + 1)))  + s; //slower than particle
+    animation-duration: $time; //override .particle. linear infinite !important; all pies going sideways? QQ */ 
+    animation-delay:5s;
+  }
+
+  #pie-two { 
+    $minSize: 3; 
+    $maxSize: 4; 
+    $size: ($minSize + (random() * (($maxSize - $minSize) + 1)))  + px; 
+    height: $size;
+    width: $size;
+
+    transform: translate(81vw, 44vh);
+    opacity:0.9;
+    background: white !important;
+    box-shadow:0 0 5px 0.5px silver; 
+
+    $minTime: 40; 
+    $maxTime: 90; 
+    $time: ($minTime + (random() * (($maxTime - $minTime) + 1)))  + s;
+    animation-duration: $time;
+    animation-delay:2s;
+  }
+
+ #pie-three {
+    $minSize: 2; 
+    $maxSize: 3; 
+    $size: ($minSize + (random() * (($maxSize - $minSize) + 1)))  + px;
+    height: $size;
+    width: $size;
+
+    /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+    transform: translate(77vw, 70.5vh); 
+    opacity:0.8;
+    background: white!important;
+    box-shadow:0 0 5px 3px silver; 
+
+    $minTime: 60;
+    $maxTime: 115; 
+    $time: ($minTime + (random() * (($maxTime - $minTime) + 1)))  + s;
+    animation-duration: $time;
+    animation-delay:10s;
+  }
+
+} 

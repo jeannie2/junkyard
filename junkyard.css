@@ -1,0 +1,1852 @@
+/* based on: https://codepen.io/tutsplus/pen/MrjYJK and https://codepen.io/natewiley/pen/Ciwyn */
+/*: note: 
+The random # only changes when you recompile your sass code and not who you reload the compiled css code in your browser:
+https://books.google.com.hk/books?id=YtvJDAAAQBAJ&pg=PA126&lpg=PA126&dq=reload+random+sass+not+working&source=bl&ots=vFsmhNkJKy&sig=ACfU3U0cbmdCa02fs5kmxl-UynSy3uA2dw&hl=en&sa=X&ved=2ahUKEwiQh-vo0pHpAhWRSJQKHcclB2gQ6AEwAXoECAoQAQ#v=onepage&q=reload%20random%20sass%20not%20working&f=false */
+body {
+  background: black;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+#junkyard {
+  position: absolute;
+  width: auto;
+  max-width: 800px;
+  height: auto;
+  top: 10%;
+  right: -10vw;
+  bottom: 0%;
+  z-index: -100;
+}
+
+#particle-container {
+  /* make relative to image size width, not viewpoert height */
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  float: left;
+}
+
+.particle {
+  z-index: 1000 !important;
+  position: absolute !important;
+  /* relative; */
+  border-radius: 50%;
+  /*or could set width, height in pixels rather than size later */
+  /*
+  &:hover {
+    animation: 
+   //transform:translateX(500px) !important;
+    background:red !important;
+  } */
+}
+
+/* didnt put (min-width: 320px) before */
+@media only screen and (max-width: 576px) {
+  #junkyard {
+    right: -70vw;
+  }
+  /*#particle-container {
+    right:50%;
+  }*/
+}
+
+@media only screen and (min-width: 576px) and (max-width: 992px) {
+  #junkyard {
+    right: -40vw;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  #junkyard {
+    right: -20vw;
+  }
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(1) {
+//&:nth-child(5n + 1) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-1 {
+  100% {
+    -webkit-transform: translate(77.44649vw, -50px);
+            transform: translate(77.44649vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-1 {
+  100% {
+    -webkit-transform: translate(77.44649vw, -50px);
+            transform: translate(77.44649vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(1) {
+  height: 2px;
+  width: 2px;
+  -webkit-transform: translate3d(77.44649vw, 71vh, 95px);
+          transform: translate3d(77.44649vw, 71vh, 95px);
+  opacity: 0.4;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-1 85.08094s linear infinite;
+          animation: hotdog-1 85.08094s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 6.88587px;
+  width: 6.88587px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 102.34379s;
+          animation-duration: 102.34379s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.28926px;
+  width: 3.28926px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 44.10172s;
+          animation-duration: 44.10172s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 2.74217px;
+  width: 2.74217px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 66.25403s;
+          animation-duration: 66.25403s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(2) {
+//&:nth-child(5n + 2) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-2 {
+  100% {
+    -webkit-transform: translate(78.55036vw, -50px);
+            transform: translate(78.55036vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-2 {
+  100% {
+    -webkit-transform: translate(78.55036vw, -50px);
+            transform: translate(78.55036vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(2) {
+  height: 1px;
+  width: 1px;
+  -webkit-transform: translate3d(78.55036vw, 44vh, 55px);
+          transform: translate3d(78.55036vw, 44vh, 55px);
+  opacity: 0.7;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-2 36.46017s linear infinite;
+          animation: hotdog-2 36.46017s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -1.4s;
+          animation-delay: -1.4s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 6.27534px;
+  width: 6.27534px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 77.91499s;
+          animation-duration: 77.91499s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.46666px;
+  width: 3.46666px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 85.89946s;
+          animation-duration: 85.89946s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 2.37615px;
+  width: 2.37615px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 107.16767s;
+          animation-duration: 107.16767s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(3) {
+//&:nth-child(5n + 3) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-3 {
+  100% {
+    -webkit-transform: translate(80.17227vw, -50px);
+            transform: translate(80.17227vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-3 {
+  100% {
+    -webkit-transform: translate(80.17227vw, -50px);
+            transform: translate(80.17227vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(3) {
+  height: 2px;
+  width: 2px;
+  -webkit-transform: translate3d(80.17227vw, 20vh, 16px);
+          transform: translate3d(80.17227vw, 20vh, 16px);
+  opacity: 0.2;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-3 64.8047s linear infinite;
+          animation: hotdog-3 64.8047s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -1.5s;
+          animation-delay: -1.5s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 5.13445px;
+  width: 5.13445px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 64.91137s;
+          animation-duration: 64.91137s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 4.52906px;
+  width: 4.52906px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 53.29706s;
+          animation-duration: 53.29706s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 3.06483px;
+  width: 3.06483px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 82.01845s;
+          animation-duration: 82.01845s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(4) {
+//&:nth-child(5n + 4) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-4 {
+  100% {
+    -webkit-transform: translate(79.59892vw, -50px);
+            transform: translate(79.59892vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-4 {
+  100% {
+    -webkit-transform: translate(79.59892vw, -50px);
+            transform: translate(79.59892vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(4) {
+  height: 1px;
+  width: 1px;
+  -webkit-transform: translate3d(79.59892vw, 45vh, 68px);
+          transform: translate3d(79.59892vw, 45vh, 68px);
+  opacity: 0.9;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-4 34.62266s linear infinite;
+          animation: hotdog-4 34.62266s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -4s;
+          animation-delay: -4s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 5.48031px;
+  width: 5.48031px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 72.7251s;
+          animation-duration: 72.7251s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.84078px;
+  width: 3.84078px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 74.76228s;
+          animation-duration: 74.76228s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 2.9562px;
+  width: 2.9562px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 71.35305s;
+          animation-duration: 71.35305s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(5) {
+//&:nth-child(5n + 5) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-5 {
+  100% {
+    -webkit-transform: translate(79.57104vw, -50px);
+            transform: translate(79.57104vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-5 {
+  100% {
+    -webkit-transform: translate(79.57104vw, -50px);
+            transform: translate(79.57104vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(5) {
+  height: 3px;
+  width: 3px;
+  -webkit-transform: translate3d(79.57104vw, 30vh, 67px);
+          transform: translate3d(79.57104vw, 30vh, 67px);
+  opacity: 0.7;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-5 73.68453s linear infinite;
+          animation: hotdog-5 73.68453s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -3.5s;
+          animation-delay: -3.5s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 5.68792px;
+  width: 5.68792px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 53.6597s;
+          animation-duration: 53.6597s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.9162px;
+  width: 3.9162px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 66.82853s;
+          animation-duration: 66.82853s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 3.31087px;
+  width: 3.31087px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 110.28248s;
+          animation-duration: 110.28248s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(6) {
+//&:nth-child(5n + 6) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-6 {
+  100% {
+    -webkit-transform: translate(76.2353vw, -50px);
+            transform: translate(76.2353vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-6 {
+  100% {
+    -webkit-transform: translate(76.2353vw, -50px);
+            transform: translate(76.2353vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(6) {
+  height: 3px;
+  width: 3px;
+  -webkit-transform: translate3d(76.2353vw, 73vh, 75px);
+          transform: translate3d(76.2353vw, 73vh, 75px);
+  opacity: 0.4;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-6 52.79945s linear infinite;
+          animation: hotdog-6 52.79945s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -0.6s;
+          animation-delay: -0.6s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 5.7742px;
+  width: 5.7742px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 53.07302s;
+          animation-duration: 53.07302s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.39237px;
+  width: 3.39237px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 53.1983s;
+          animation-duration: 53.1983s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 3.0257px;
+  width: 3.0257px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 104.06117s;
+          animation-duration: 104.06117s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(7) {
+//&:nth-child(5n + 7) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-7 {
+  100% {
+    -webkit-transform: translate(78.80004vw, -50px);
+            transform: translate(78.80004vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-7 {
+  100% {
+    -webkit-transform: translate(78.80004vw, -50px);
+            transform: translate(78.80004vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(7) {
+  height: 3px;
+  width: 3px;
+  -webkit-transform: translate3d(78.80004vw, 60vh, 38px);
+          transform: translate3d(78.80004vw, 60vh, 38px);
+  opacity: 0.2;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-7 40.30021s linear infinite;
+          animation: hotdog-7 40.30021s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -6.3s;
+          animation-delay: -6.3s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 5.82514px;
+  width: 5.82514px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 85.13527s;
+          animation-duration: 85.13527s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.63094px;
+  width: 3.63094px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 82.72822s;
+          animation-duration: 82.72822s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 3.01425px;
+  width: 3.01425px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 100.42033s;
+          animation-duration: 100.42033s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(8) {
+//&:nth-child(5n + 8) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-8 {
+  100% {
+    -webkit-transform: translate(76.3111vw, -50px);
+            transform: translate(76.3111vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-8 {
+  100% {
+    -webkit-transform: translate(76.3111vw, -50px);
+            transform: translate(76.3111vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(8) {
+  height: 3px;
+  width: 3px;
+  -webkit-transform: translate3d(76.3111vw, 9vh, 64px);
+          transform: translate3d(76.3111vw, 9vh, 64px);
+  opacity: 0.3;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-8 55.14466s linear infinite;
+          animation: hotdog-8 55.14466s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -3.2s;
+          animation-delay: -3.2s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 6.5441px;
+  width: 6.5441px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 75.16572s;
+          animation-duration: 75.16572s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.80912px;
+  width: 3.80912px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 40.30091s;
+          animation-duration: 40.30091s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 2.64777px;
+  width: 2.64777px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 87.39036s;
+          animation-duration: 87.39036s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(9) {
+//&:nth-child(5n + 9) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-9 {
+  100% {
+    -webkit-transform: translate(76.09452vw, -50px);
+            transform: translate(76.09452vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-9 {
+  100% {
+    -webkit-transform: translate(76.09452vw, -50px);
+            transform: translate(76.09452vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(9) {
+  height: 3px;
+  width: 3px;
+  -webkit-transform: translate3d(76.09452vw, 59vh, 35px);
+          transform: translate3d(76.09452vw, 59vh, 35px);
+  opacity: 0.8;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-9 79.4957s linear infinite;
+          animation: hotdog-9 79.4957s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -4.5s;
+          animation-delay: -4.5s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 5.85208px;
+  width: 5.85208px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 73.51798s;
+          animation-duration: 73.51798s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.36px;
+  width: 3.36px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 51.54511s;
+          animation-duration: 51.54511s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 2.65456px;
+  width: 2.65456px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 90.59621s;
+          animation-duration: 90.59621s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(10) {
+//&:nth-child(5n + 10) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-10 {
+  100% {
+    -webkit-transform: translate(79.13713vw, -50px);
+            transform: translate(79.13713vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-10 {
+  100% {
+    -webkit-transform: translate(79.13713vw, -50px);
+            transform: translate(79.13713vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(10) {
+  height: 2px;
+  width: 2px;
+  -webkit-transform: translate3d(79.13713vw, 42vh, 26px);
+          transform: translate3d(79.13713vw, 42vh, 26px);
+  opacity: 0.4;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-10 43.07185s linear infinite;
+          animation: hotdog-10 43.07185s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -3s;
+          animation-delay: -3s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 6.65561px;
+  width: 6.65561px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 99.90628s;
+          animation-duration: 99.90628s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.80871px;
+  width: 3.80871px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 47.34857s;
+          animation-duration: 47.34857s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 3.03652px;
+  width: 3.03652px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 100.6401s;
+          animation-duration: 100.6401s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(11) {
+//&:nth-child(5n + 11) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-11 {
+  100% {
+    -webkit-transform: translate(75.01375vw, -50px);
+            transform: translate(75.01375vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-11 {
+  100% {
+    -webkit-transform: translate(75.01375vw, -50px);
+            transform: translate(75.01375vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(11) {
+  height: 1px;
+  width: 1px;
+  -webkit-transform: translate3d(75.01375vw, 78vh, 73px);
+          transform: translate3d(75.01375vw, 78vh, 73px);
+  opacity: 0.9;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-11 35.79279s linear infinite;
+          animation: hotdog-11 35.79279s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -1.1s;
+          animation-delay: -1.1s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 6.78944px;
+  width: 6.78944px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 82.19504s;
+          animation-duration: 82.19504s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 4.19242px;
+  width: 4.19242px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 80.66439s;
+          animation-duration: 80.66439s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 2.56643px;
+  width: 2.56643px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 68.28915s;
+          animation-duration: 68.28915s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(12) {
+//&:nth-child(5n + 12) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-12 {
+  100% {
+    -webkit-transform: translate(75.55081vw, -50px);
+            transform: translate(75.55081vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-12 {
+  100% {
+    -webkit-transform: translate(75.55081vw, -50px);
+            transform: translate(75.55081vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(12) {
+  height: 1px;
+  width: 1px;
+  -webkit-transform: translate3d(75.55081vw, 68vh, 52px);
+          transform: translate3d(75.55081vw, 68vh, 52px);
+  opacity: 1;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-12 69.3809s linear infinite;
+          animation: hotdog-12 69.3809s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -7.2s;
+          animation-delay: -7.2s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 6.26173px;
+  width: 6.26173px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 110.86306s;
+          animation-duration: 110.86306s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.99428px;
+  width: 3.99428px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 63.48739s;
+          animation-duration: 63.48739s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 2.2521px;
+  width: 2.2521px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 79.81944s;
+          animation-duration: 79.81944s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(13) {
+//&:nth-child(5n + 13) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-13 {
+  100% {
+    -webkit-transform: translate(76.22836vw, -50px);
+            transform: translate(76.22836vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-13 {
+  100% {
+    -webkit-transform: translate(76.22836vw, -50px);
+            transform: translate(76.22836vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(13) {
+  height: 1px;
+  width: 1px;
+  -webkit-transform: translate3d(76.22836vw, 31vh, 61px);
+          transform: translate3d(76.22836vw, 31vh, 61px);
+  opacity: 0.7;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-13 31.09198s linear infinite;
+          animation: hotdog-13 31.09198s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -10.4s;
+          animation-delay: -10.4s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 5.54084px;
+  width: 5.54084px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 79.59652s;
+          animation-duration: 79.59652s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 4.41939px;
+  width: 4.41939px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 59.88516s;
+          animation-duration: 59.88516s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 3.86879px;
+  width: 3.86879px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 60.11095s;
+          animation-duration: 60.11095s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(14) {
+//&:nth-child(5n + 14) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-14 {
+  100% {
+    -webkit-transform: translate(75.52725vw, -50px);
+            transform: translate(75.52725vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-14 {
+  100% {
+    -webkit-transform: translate(75.52725vw, -50px);
+            transform: translate(75.52725vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(14) {
+  height: 1px;
+  width: 1px;
+  -webkit-transform: translate3d(75.52725vw, 56vh, 2px);
+          transform: translate3d(75.52725vw, 56vh, 2px);
+  opacity: 0.4;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-14 62.6684s linear infinite;
+          animation: hotdog-14 62.6684s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -4.2s;
+          animation-delay: -4.2s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 5.73681px;
+  width: 5.73681px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 74.26709s;
+          animation-duration: 74.26709s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.49991px;
+  width: 3.49991px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 61.96485s;
+          animation-duration: 61.96485s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 2.5904px;
+  width: 2.5904px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 114.77997s;
+          animation-duration: 114.77997s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(15) {
+//&:nth-child(5n + 15) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-15 {
+  100% {
+    -webkit-transform: translate(80.06973vw, -50px);
+            transform: translate(80.06973vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-15 {
+  100% {
+    -webkit-transform: translate(80.06973vw, -50px);
+            transform: translate(80.06973vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(15) {
+  height: 1px;
+  width: 1px;
+  -webkit-transform: translate3d(80.06973vw, 18vh, 55px);
+          transform: translate3d(80.06973vw, 18vh, 55px);
+  opacity: 0.4;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-15 34.58995s linear infinite;
+          animation: hotdog-15 34.58995s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -6s;
+          animation-delay: -6s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 5.84103px;
+  width: 5.84103px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 105.77962s;
+          animation-duration: 105.77962s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 4.24709px;
+  width: 4.24709px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 61.44158s;
+          animation-duration: 61.44158s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 2.59434px;
+  width: 2.59434px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 107.73628s;
+          animation-duration: 107.73628s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(16) {
+//&:nth-child(5n + 16) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-16 {
+  100% {
+    -webkit-transform: translate(76.7065vw, -50px);
+            transform: translate(76.7065vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-16 {
+  100% {
+    -webkit-transform: translate(76.7065vw, -50px);
+            transform: translate(76.7065vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(16) {
+  height: 3px;
+  width: 3px;
+  -webkit-transform: translate3d(76.7065vw, 62vh, 38px);
+          transform: translate3d(76.7065vw, 62vh, 38px);
+  opacity: 0.6;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-16 60.59313s linear infinite;
+          animation: hotdog-16 60.59313s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -11.2s;
+          animation-delay: -11.2s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 5.66089px;
+  width: 5.66089px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 87.28967s;
+          animation-duration: 87.28967s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.65558px;
+  width: 3.65558px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 87.29721s;
+          animation-duration: 87.29721s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 3.81638px;
+  width: 3.81638px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 83.13013s;
+          animation-duration: 83.13013s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(17) {
+//&:nth-child(5n + 17) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-17 {
+  100% {
+    -webkit-transform: translate(79.08448vw, -50px);
+            transform: translate(79.08448vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-17 {
+  100% {
+    -webkit-transform: translate(79.08448vw, -50px);
+            transform: translate(79.08448vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(17) {
+  height: 1px;
+  width: 1px;
+  -webkit-transform: translate3d(79.08448vw, 6vh, 5px);
+          transform: translate3d(79.08448vw, 6vh, 5px);
+  opacity: 0.9;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-17 53.01888s linear infinite;
+          animation: hotdog-17 53.01888s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -5.1s;
+          animation-delay: -5.1s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 6.64788px;
+  width: 6.64788px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 106.60258s;
+          animation-duration: 106.60258s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 4.8352px;
+  width: 4.8352px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 55.34032s;
+          animation-duration: 55.34032s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 2.0124px;
+  width: 2.0124px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 86.8069s;
+          animation-duration: 86.8069s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(18) {
+//&:nth-child(5n + 18) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-18 {
+  100% {
+    -webkit-transform: translate(79.36611vw, -50px);
+            transform: translate(79.36611vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-18 {
+  100% {
+    -webkit-transform: translate(79.36611vw, -50px);
+            transform: translate(79.36611vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(18) {
+  height: 3px;
+  width: 3px;
+  -webkit-transform: translate3d(79.36611vw, 4vh, 71px);
+          transform: translate3d(79.36611vw, 4vh, 71px);
+  opacity: 0.8;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-18 34.35766s linear infinite;
+          animation: hotdog-18 34.35766s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -12.6s;
+          animation-delay: -12.6s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 6.67981px;
+  width: 6.67981px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 95.06978s;
+          animation-duration: 95.06978s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 4.27868px;
+  width: 4.27868px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 61.75189s;
+          animation-duration: 61.75189s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 3.8028px;
+  width: 3.8028px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 100.3166s;
+          animation-duration: 100.3166s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+
+/* 6 + 13 = 19. in case no includes 13 particles (6 other divs on page). how make target just particles? 
+/*.particle:nth-child(19) {
+//&:nth-child(5n + 19) { */
+/* change to 70 + (random) */
+/* px for Z only */
+@-webkit-keyframes hotdog-19 {
+  100% {
+    -webkit-transform: translate(79.79683vw, -50px);
+            transform: translate(79.79683vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+@keyframes hotdog-19 {
+  100% {
+    -webkit-transform: translate(79.79683vw, -50px);
+            transform: translate(79.79683vw, -50px);
+    /*TEST -30px,  -400px  -450px -500px -(50vh).,-($randomY)  400px? looks same for all browsers? 
+     QQ no work: translateY(-$randomY).  same as -$randomY and ($randomY * -1)? */
+  }
+}
+
+.particle:nth-child(19) {
+  height: 1px;
+  width: 1px;
+  -webkit-transform: translate3d(79.79683vw, 55vh, 13px);
+          transform: translate3d(79.79683vw, 55vh, 13px);
+  opacity: 1;
+  /* no start from 0. how make it QQ */
+  background: white;
+  /* hsl(random(360), 70%, 50%) */
+  /* time: speed. */
+  -webkit-animation: hotdog-19 78.86853s linear infinite;
+          animation: hotdog-19 78.86853s linear infinite;
+  /* for each one take 5 seconds, x5 so 25 per dot?  linear? */
+  /* 0.1 to 1.0 */
+  -webkit-animation-delay: -3.8s;
+          animation-delay: -3.8s;
+  /* time when dot start moving */
+}
+
+#pie-one {
+  /* account for decimals? */
+  height: 6.68962px;
+  width: 6.68962px;
+  -webkit-transform: translate(77.1vw, 42vh);
+          transform: translate(77.1vw, 42vh);
+  /* override .particle */
+  opacity: 0.9;
+  background: white !important;
+  /*border:1px solid rgba(102,105,105,0.8); #999;  */
+  -webkit-box-shadow: 0 0 10px 3px silver;
+          box-shadow: 0 0 10px 3px silver;
+  /*border:transparent; */
+  -webkit-animation-duration: 86.62434s;
+          animation-duration: 86.62434s;
+  -webkit-animation-delay: 5s;
+          animation-delay: 5s;
+}
+
+#pie-two {
+  height: 3.16916px;
+  width: 3.16916px;
+  -webkit-transform: translate(81vw, 44vh);
+          transform: translate(81vw, 44vh);
+  opacity: 0.9;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 0.5px silver;
+          box-shadow: 0 0 5px 0.5px silver;
+  -webkit-animation-duration: 86.12342s;
+          animation-duration: 86.12342s;
+  -webkit-animation-delay: 2s;
+          animation-delay: 2s;
+}
+
+#pie-three {
+  height: 2.57929px;
+  width: 2.57929px;
+  /*$minX: 73;
+    $maxX: 77;
+    $randomX: ($minX + (random() * (($maxX - $minX) + 1))) * 1vw;
+    /* randomX not working. when refresh, everything same spot: transform: translate($randomX, 70.5vh); */
+  -webkit-transform: translate(77vw, 70.5vh);
+          transform: translate(77vw, 70.5vh);
+  opacity: 0.8;
+  background: white !important;
+  -webkit-box-shadow: 0 0 5px 3px silver;
+          box-shadow: 0 0 5px 3px silver;
+  -webkit-animation-duration: 100.98182s;
+          animation-duration: 100.98182s;
+  -webkit-animation-delay: 10s;
+          animation-delay: 10s;
+}
+/*# sourceMappingURL=junkyard.css.map */
