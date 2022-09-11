@@ -1,0 +1,90 @@
+<!-- based on: https://codepen.io/tutsplus/pen/MrjYJK and https://codepen.io/natewiley/pen/Ciwyn -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>junkyard</title>
+
+  <link href="junkyard.css" rel="stylesheet" type="text/css">
+<!----<script src="bower_components/sass.js/dist/sass.js"> </script>-->
+
+  <style>
+
+  </style>
+
+</head>
+
+<body>
+
+<div id="main">
+   
+<div id="image">
+    <img id="junkyard" src="images/junkyard.png" alt="junkyard"> 
+</div>
+
+  <div id="particle-container">
+<!---
+    
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>  -->
+
+      <div id="pie-one" class="particle"></div>
+      <div id="pie-two" class="particle"></div>
+      <div id="pie-three" class="particle"></div>
+
+  </div>
+
+
+  <!--<div id="pie-four" class="particle"></div>-->
+  <!--<div id="pie-five" class="particle"></div>-->
+  
+</div>
+  
+<script>
+
+function createDots() {
+  var newDiv = document.createElement("div");  
+  newDiv.classList.add("particle");
+  document.getElementById("particle-container").appendChild(newDiv);
+  divCount = document.querySelectorAll("div");  //19. # of particles, particle-container, others
+  console.log("div:" + divCount.length); 
+}
+
+for (var i =0; i<13; i++) {  //10. 30. random # dots QQ?  
+  createDots();   
+}  
+
+//var sass = require('node-sass');
+
+/*
+Sass.initialize('bower_components/sass.js/dist/sass.worker.js');
+function compileCSS() {
+  console.log("compiled");
+
+}
+
+compileCSS();*/
+
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+</body>
+
+</html>
+
+
+
