@@ -1,4 +1,4 @@
-# Junkyard
+# junkyard
 
 Simple SCSS project 
 
