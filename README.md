@@ -1,6 +1,6 @@
 # junkyard
 
-Simple SCSS project 
+Old SCSS project 
 
 ## Technologies
 This project was made using HTML, CSS, SCSS, JavaScript
